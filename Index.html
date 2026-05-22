@@ -379,56 +379,156 @@ tbody tr.selected-row { background:rgba(77,159,255,0.07) !important; }
 .action-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accentGlow); }
 .action-btn.del:hover { border-color: var(--red); color: var(--red); background: rgba(255,90,90,0.08); }
 
-/* DETAIL PAGE */
+/* ── DETAIL PAGE ─────────────────────────────────────────── */
+
+/* Hero */
 .detail-header {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 22px; margin-bottom: 16px;
-  display: flex; gap: 20px; align-items: flex-start;
+  border-radius: var(--radius-lg); padding: 20px 22px; margin-bottom: 14px;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: start;
 }
+.detail-rating-block { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; }
+.detail-rating-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
 .detail-rating-badge {
-  width: 58px; height: 58px; border-radius: 14px;
+  width: 56px; height: 56px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 28px; font-weight: 800; font-family: var(--mono); flex-shrink: 0;
+  font-size: 26px; font-weight: 700; font-family: var(--mono); flex-shrink: 0;
 }
-.rating-bg-A { background: rgba(52,212,128,0.14); color: var(--green); border: 1px solid rgba(52,212,128,0.3); }
-.rating-bg-B { background: rgba(245,185,66,0.14); color: var(--amber); border: 1px solid rgba(245,185,66,0.3); }
-.rating-bg-C { background: rgba(255,90,90,0.14); color: var(--red); border: 1px solid rgba(255,90,90,0.3); }
-.rating-bg-X { background: rgba(167,139,250,0.14); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
-.detail-main-info { flex: 1; }
-.detail-asset-id { font-size: 22px; font-weight: 800; font-family: var(--mono); color: var(--text); letter-spacing: -0.5px; }
-.detail-meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 9px; }
-.detail-meta-item { font-size: 12px; color: var(--muted); }
-.detail-meta-item strong { color: var(--text2); }
-.detail-health { font-size: 14px; font-weight: 600; margin-top: 7px; }
+.rating-bg-A { background: rgba(52,212,128,0.12); color: var(--green); border: 1px solid rgba(52,212,128,0.3); }
+.rating-bg-B { background: rgba(245,185,66,0.12); color: var(--amber); border: 1px solid rgba(245,185,66,0.3); }
+.rating-bg-C { background: rgba(255,90,90,0.12);  color: var(--red);   border: 1px solid rgba(255,90,90,0.3); }
+.rating-bg-X { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+
+.detail-main-info { flex: 1; min-width: 0; }
+.detail-asset-id { font-size: 21px; font-weight: 800; font-family: var(--mono); color: var(--text); letter-spacing: -0.4px; line-height: 1.2; }
+
+.detail-chips { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-top: 5px; }
+.detail-chip {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 2px 9px; border-radius: 4px; font-size: 10px;
+  font-weight: 600; font-family: var(--mono); letter-spacing: 0.3px;
+}
+.chip-vendor { background: rgba(77,159,255,0.1); color: var(--accent); border: 1px solid rgba(77,159,255,0.2); }
+.chip-comp   { background: rgba(34,228,208,0.08); color: var(--cyan);   border: 1px solid rgba(34,228,208,0.2); }
+.chip-model  { font-size: 11px; color: var(--muted); background: none; border: none; padding-left: 2px; font-family: var(--sans); font-weight: 400; }
+
+.detail-health-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.detail-health-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); }
+.detail-health-val {
+  font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 4px;
+}
+.hv-A { background: rgba(52,212,128,0.08); color: var(--green); border: 1px solid rgba(52,212,128,0.2); }
+.hv-B { background: rgba(245,185,66,0.08); color: var(--amber); border: 1px solid rgba(245,185,66,0.2); }
+.hv-C { background: rgba(255,90,90,0.08);  color: var(--red);   border: 1px solid rgba(255,90,90,0.2); }
+.hv-X { background: rgba(167,139,250,0.08); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+
 .detail-interp {
-  background: var(--surface2);
-  border-left: 3px solid var(--accent3);
-  border-radius: 0 8px 8px 0;
-  padding: 11px 16px; font-size: 12px; color: var(--muted); margin-top: 12px; line-height: 1.7;
+  background: var(--surface2); border-left: 2px solid var(--border2);
+  border-radius: 0 6px 6px 0; padding: 9px 14px;
+  font-size: 11.5px; color: var(--text2); margin-top: 11px; line-height: 1.7;
 }
 
-.detail-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 16px; }
-.detail-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; grid-column: span 1; }
-.detail-section.full { grid-column: span 3; }
-.detail-section-title { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 13px; padding-bottom: 9px; border-bottom: 1px solid var(--border); }
-.elem-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); }
-.elem-row:last-child { border-bottom: none; }
-.elem-name { color: var(--muted); font-size: 12px; }
-.elem-val  { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--text2); }
+/* Key stats right column */
+.detail-kv-col { display: flex; flex-direction: column; gap: 7px; min-width: 164px; flex-shrink: 0; }
+.detail-kv {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 12px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.detail-kv-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.9px; color: var(--muted); }
+.detail-kv-val { font-size: 12px; font-weight: 600; font-family: var(--mono); color: var(--text); letter-spacing: 0.2px; }
+.detail-kv-val.warn { color: var(--amber); }
+.detail-kv-val.ok   { color: var(--green); }
+.detail-kv-val.bad  { color: var(--red); }
 
-/* TREND */
-.trend-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+/* Meta row — 2 cards (Dates + Lubricant) */
+.detail-meta-row {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-bottom: 14px;
+}
+.detail-meta-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+}
+.detail-meta-card-title {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted); margin-bottom: 9px;
+  padding-bottom: 7px; border-bottom: 1px solid var(--border);
+}
+.detail-meta-field {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 3.5px 0; border-bottom: 1px solid rgba(30,47,77,0.5);
+}
+.detail-meta-field:last-child { border-bottom: none; }
+.dmf-name { font-size: 11px; color: var(--muted); }
+.dmf-val  { font-size: 11px; font-weight: 600; font-family: var(--mono); color: var(--text2); }
+
+/* Elements block — 4 columns inside one card */
+.detail-elements-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 14px;
+}
+.detail-elements-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px; background: var(--surface2); border-bottom: 1px solid var(--border);
+}
+.detail-elements-title { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); }
+.detail-elements-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.detail-elem-group {
+  padding: 13px 15px; border-right: 1px solid var(--border);
+}
+.detail-elem-group:last-child { border-right: none; }
+
+.detail-section-title {
+  font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px;
+  color: var(--muted); margin-bottom: 9px; padding-bottom: 7px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+}
+.dstt-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.dot-wear { background: var(--red); }
+.dot-cont { background: var(--amber); }
+.dot-add  { background: var(--cyan); }
+.dot-cond { background: var(--purple); }
+
+.elem-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 4px 0; border-bottom: 1px solid rgba(30,47,77,0.5);
+}
+.elem-row:last-child { border-bottom: none; }
+.elem-name { color: var(--muted); font-size: 11px; }
+.elem-val-wrap { display: flex; align-items: center; gap: 6px; }
+.elem-bar { width: 36px; height: 3px; border-radius: 2px; background: var(--surface3); overflow: hidden; }
+.elem-bar-fill { height: 100%; border-radius: 2px; }
+.fill-ok  { background: var(--green); }
+.fill-md  { background: var(--amber); }
+.fill-hi  { background: var(--red); }
+.elem-val { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--text2); min-width: 32px; text-align: right; }
+.elem-val.hi { color: var(--red); }
+.elem-val.md { color: var(--amber); }
+.elem-val.ok { color: var(--green); }
+
+/* Trend section */
+.detail-trend-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 14px;
+}
+.detail-trend-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px; background: var(--surface2); border-bottom: 1px solid var(--border);
+  gap: 12px; flex-wrap: wrap;
+}
+.detail-trend-title { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); white-space: nowrap; }
+.trend-controls { display: flex; gap: 5px; flex-wrap: wrap; }
 .trend-btn {
-  padding: 5px 14px; border-radius: 20px; border: 1px solid var(--border);
-  background: transparent; color: var(--muted); font-size: 11px; font-weight: 600;
-  cursor: pointer; font-family: var(--sans); transition: all 0.18s; letter-spacing: 0.2px;
+  padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); font-size: 10px; font-weight: 600;
+  cursor: pointer; font-family: var(--sans); transition: all 0.15s; letter-spacing: 0.2px;
 }
 .trend-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accentGlow); }
-.trend-btn.active {
-  background: linear-gradient(135deg, var(--accent2), var(--accent3));
-  border-color: var(--accent2); color: white;
-  box-shadow: 0 2px 8px rgba(26,111,216,0.3);
-}
+.trend-btn.active { background: var(--accentGlow); border-color: var(--accent); color: var(--accent); }
+.detail-trend-body { padding: 14px 18px; }
 
 /* MODAL */
 .modal-backdrop {
@@ -600,8 +700,10 @@ tbody tr.selected-row { background:rgba(77,159,255,0.07) !important; }
   .sidebar { display: none; }
   .stat-grid { grid-template-columns: repeat(2,1fr); }
   .chart-grid { grid-template-columns: 1fr; }
-  .detail-grid { grid-template-columns: 1fr; }
-  .detail-section.full { grid-column: span 1; }
+  .detail-header { grid-template-columns: auto 1fr; }
+  .detail-kv-col { display: none; }
+  .detail-meta-row { grid-template-columns: 1fr 1fr; }
+  .detail-elements-grid { grid-template-columns: 1fr 1fr; }
   .import-layout { grid-template-columns: 1fr; }
   .field-grid { grid-template-columns: 1fr 1fr; }
   .field-group.span3 { grid-column: span 2; }
@@ -623,20 +725,28 @@ tbody tr.selected-row { background:rgba(77,159,255,0.07) !important; }
   outline: none; cursor: text;
 }
 .detail-save-bar {
-  position: sticky; bottom: 0; background: var(--surface);
-  border-top: 1px solid var(--border); padding: 13px 22px;
-  display: none; align-items: center; gap: 12px; z-index: 40;
-  backdrop-filter: blur(8px);
+  position: sticky; bottom: 0;
+  background: var(--surface);
+  border-top: 1px solid rgba(77,159,255,0.2);
+  padding: 10px 22px;
+  display: none; align-items: center; gap: 10px; z-index: 40;
 }
 .detail-save-bar.visible { display: flex; }
-.detail-dirty-msg { font-size: 12px; color: var(--amber); flex: 1; font-weight: 600; }
+.detail-dirty-msg {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; color: var(--amber); flex: 1; font-weight: 600;
+}
+.detail-dirty-msg::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber); box-shadow: 0 0 6px var(--amber); flex-shrink: 0;
+}
 
 /* DETAIL PAGINATION */
 .detail-nav-bar {
   background: var(--surface2); border-bottom: 1px solid var(--border);
-  padding: 10px 26px; display: flex; align-items: center; gap: 12px;
+  padding: 8px 24px; display: flex; align-items: center; gap: 10px;
 }
-.detail-nav-info { font-size: 12px; color: var(--muted); font-family: var(--mono); flex: 1; text-align: center; letter-spacing: 0.3px; }
+.detail-nav-info { font-size: 11px; color: var(--muted); font-family: var(--mono); flex: 1; text-align: center; letter-spacing: 0.3px; }
 </style>
 </head>
 <body>
@@ -1995,128 +2105,186 @@ function renderDetail(r) {
   const body = document.getElementById('detailBody');
   const em = detailEditMode;
 
-  function editableText(key, val, width) {
-    if (!em) return `<span class="elem-val">${escHtml(val)||'—'}</span>`;
-    return `<input class="editable-val" style="max-width:${width||120}px;"
+  function ef(key, val, width) {
+    if (!em) return `<span class="dmf-val" style="color:var(--text);">${escHtml(val)||'—'}</span>`;
+    return `<input class="editable-val" style="max-width:${width||130}px;"
       value="${escAttr(val)}"
       onchange="onDetailFieldChange('${key}', this.value)"
       oninput="onDetailFieldChange('${key}', this.value)">`;
   }
 
-  function editableSelect(key, val, opts) {
-    if (!em) return `<span class="elem-val">${escHtml(val)||'—'}</span>`;
+  function esel(key, val, opts) {
+    if (!em) return `<span class="dmf-val" style="color:var(--text);">${escHtml(val)||'—'}</span>`;
     const options = opts.map(o => `<option value="${escAttr(o)}" ${val===o?'selected':''}>${o||'—'}</option>`).join('');
-    return `<select class="editable-val" style="max-width:140px;"
-      onchange="onDetailFieldChange('${key}', this.value)">${options}</select>`;
+    return `<select class="editable-val" style="max-width:140px;" onchange="onDetailFieldChange('${key}', this.value)">${options}</select>`;
   }
 
+  function elemVal(key, val) {
+    if (!em) {
+      const n = parseFloat(val);
+      const cls = !val ? '' : n > 150 ? 'hi' : n > 80 ? 'md' : 'ok';
+      return `<span class="elem-val ${cls}">${escHtml(val)||'—'}</span>`;
+    }
+    return `<input class="editable-val" style="max-width:80px;" value="${escAttr(val)}"
+      onchange="onDetailFieldChange('${key}', this.value)"
+      oninput="onDetailFieldChange('${key}', this.value)">`;
+  }
+
+  // Same groupings as before — unchanged
   const elems = [
-    { group: 'WEAR ELEMENTS', items: [
+    { group: 'WEAR ELEMENTS', dot: 'dot-wear', items: [
       {n:'Iron (Fe)',k:'Iron'},{n:'Chromium (Cr)',k:'Chromium'},{n:'Nickel (Ni)',k:'Nickel'},
       {n:'Aluminum (Al)',k:'Aluminum'},{n:'Copper (Cu)',k:'Copper'},{n:'Tin (Sn)',k:'Tin'},{n:'Lead (Pb)',k:'Lead'}
     ]},
-    { group: 'CONTAMINANT', items: [
+    { group: 'CONTAMINANT', dot: 'dot-cont', items: [
       {n:'Silicon (Si)',k:'Silicon'},{n:'Sodium (Na)',k:'Sodium'},{n:'Potasium (K)',k:'Potasium'}
     ]},
-    { group: 'ADDITIVES', items: [
+    { group: 'ADDITIVES', dot: 'dot-add', items: [
       {n:'Moly (Mo)',k:'Moly'},{n:'Magnesium (Mg)',k:'Magnesium'},{n:'Calcium (Ca)',k:'Calcium'},
       {n:'Zinc (Zn)',k:'Zinc'},{n:'Phosphorus (P)',k:'Phosphorus'},{n:'Boron (B)',k:'Boron'}
     ]},
-    { group: 'OIL CONDITION', items: [
+    { group: 'OIL CONDITION', dot: 'dot-cond', items: [
       {n:'TBN',k:'TBN'},{n:'Soot',k:'Soot'},{n:'Oxidation',k:'Oxidation'},
       {n:'Sulfation',k:'Sulfation'},{n:'Nitration',k:'Nitration'},{n:'Water',k:'Water'},{n:'Fuel',k:'Fuel'},
       {n:'Visc 40°C',k:'Visc_40C'},{n:'Visc 100°C',k:'Visc_100C'},{n:'ISO4406',k:'ISO4406'},{n:'PQI',k:'PQI'}
     ]}
   ];
 
+  // Meta cards — hanya field yang TIDAK tampil di hero/kv-col
+  // Hero sudah menampilkan: Asset_ID, Source, Component, Model, Section, Health, Interp_Text,
+  //                         ID_Vendor (Lab No), Sampled_Date, Meter_On_Asset (SMU), Meter_on_Fluid, Fluid_Changed
+  // Condition & Contamination dihapus karena sudah tercakup di Element Analysis (Oil Condition group)
+  const metaGroups = [
+    { title: 'Dates', fields: [
+      {label:'Report Date', key:'Report_Date',  type:'date'},
+      {label:'PM Type',     key:'PM_Type',      type:'text'},
+    ]},
+    { title: 'Lubricant', fields: [
+      {label:'Fluid Brand',  key:'Fluid_Brand',  type:'text'},
+      {label:'Fluid Type',   key:'Fluid_Type',   type:'text'},
+      {label:'Fluid Weight', key:'Fluid_Weight', type:'text'},
+      {label:'Foam Test',    key:'Foam_Test',    type:'text'},
+    ]},
+  ];
+
   body.innerHTML = `
+
+    <!-- ── HERO ── -->
     <div class="detail-header">
-      <div class="detail-rating-badge rating-bg-${rt}">
-        ${em ? editableSelect('Rating', rt, ['A','B','C','X']) : rt}
+      <div class="detail-rating-block">
+        <div class="detail-rating-badge rating-bg-${rt}">
+          ${em ? esel('Rating', rt, ['A','B','C','X']) : rt}
+        </div>
+        <div class="detail-rating-label">Rating</div>
       </div>
+
       <div class="detail-main-info">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="detail-asset-id">
-            ${em
-              ? `<input class="editable-val" style="font-size:20px;font-weight:700;max-width:200px;"
-                  value="${escAttr(r.Asset_ID||'')}"
-                  onchange="onDetailFieldChange('Asset_ID', this.value)">`
-              : (r.Asset_ID || r.ID_Vendor)}
-          </div>
-        </div>
-        <div class="detail-health" style="color:${rt==='A'?'var(--green)':rt==='B'?'var(--amber)':rt==='X'?'#a855f7':'var(--red)'};">
-          Health:
+        <div class="detail-asset-id">
           ${em
-            ? `<input class="editable-val" style="max-width:220px;"
-                value="${escAttr(r.Health||'')}"
-                onchange="onDetailFieldChange('Health', this.value)">`
-            : `<strong>${r.Health||'—'}</strong>`}
+            ? `<input class="editable-val" style="font-size:19px;font-weight:700;max-width:220px;"
+                value="${escAttr(r.Asset_ID||'')}"
+                onchange="onDetailFieldChange('Asset_ID', this.value)">`
+            : (r.Asset_ID || r.ID_Vendor)}
         </div>
-
-        <div class="detail-meta" style="${em?'display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;':''}">
-          ${[
-            {label:'Lab No',     key:'ID_Vendor',      type:'text'},
-            {label:'Vendor',     key:'Source',         type:'select', opts:['PAP','TU SOS','Microlab','Tekonomiks']},
-            {label:'Model',      key:'Model',          type:'text'},
-            {label:'Component',  key:'Component',      type:'text'},
-            {label:'Section',    key:'Section',        type:'text'},
-            {label:'Sampled',    key:'Sampled_Date',   type:'date'},
-            {label:'Report',     key:'Report_Date',    type:'date'},
-            {label:'SMU',        key:'Meter_On_Asset', type:'text'},
-            {label:'PM Type',    key:'PM_Type',        type:'text'},
-            {label:'Oil Hrs',    key:'Meter_on_Fluid', type:'text'},
-            {label:'Fluid Brand',key:'Fluid_Brand',    type:'text'},
-            {label:'Fluid Wt',   key:'Fluid_Weight',   type:'text'},
-            {label:'Oil Change', key:'Fluid_Changed',  type:'select', opts:['','Yes','No']},
-          ].map(f => {
-            const val = r[f.key] || '';
-            let inputHtml;
-            if (!em) {
-              inputHtml = `<span style="color:var(--text);">${escHtml(f.key==='Sampled_Date'||f.key==='Report_Date'?fmtDateDisplay(val):val) || '—'}</span>`;
-            } else if (f.type === 'select') {
-              const opts = f.opts.map(o=>`<option value="${escAttr(o)}" ${val===o?'selected':''}>${o||'—'}</option>`).join('');
-              inputHtml = `<select class="editable-val" style="max-width:160px;" onchange="onDetailFieldChange('${f.key}',this.value)">${opts}</select>`;
-            } else {
-              inputHtml = `<input class="editable-val" type="${f.type}" style="max-width:160px;"
-                value="${escAttr(val)}" onchange="onDetailFieldChange('${f.key}',this.value)">`;
-            }
-            return `<div class="detail-meta-item" style="${em?'display:flex;flex-direction:column;gap:3px;':''}">
-              <span style="font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;">${f.label}</span>
-              ${inputHtml}
-            </div>`;
-          }).join('')}
+        <div class="detail-chips">
+          <span class="detail-chip chip-vendor">${escHtml(r.Source||'—')}</span>
+          <span class="detail-chip chip-comp">${escHtml(r.Component||'—')}</span>
+          <span class="detail-chip chip-model">${escHtml(r.Model||'')}${r.Section?' · '+escHtml(r.Section):''}</span>
         </div>
-
-        <div style="margin-top:10px;">
+        <div class="detail-health-row">
+          <span class="detail-health-label">Health</span>
           ${em
-            ? `<div style="font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:4px;">Interpretation</div>
-               <textarea class="editable-val" style="max-width:100%;width:100%;min-height:60px;resize:vertical;font-family:var(--sans);"
+            ? `<input class="editable-val" style="max-width:240px;" value="${escAttr(r.Health||'')}" onchange="onDetailFieldChange('Health', this.value)">`
+            : `<span class="detail-health-val hv-${rt}">${escHtml(r.Health||'—')}</span>`}
+        </div>
+        ${em
+          ? `<div style="margin-top:10px;">
+               <div class="detail-rating-label" style="margin-bottom:4px;">Interpretation</div>
+               <textarea class="editable-val" style="width:100%;min-height:56px;resize:vertical;font-family:var(--sans);max-width:100%;"
                 onchange="onDetailFieldChange('Interp_Text',this.value)"
-                oninput="onDetailFieldChange('Interp_Text',this.value)">${escHtml(r.Interp_Text||'')}</textarea>`
-            : (r.Interp_Text ? `<div class="detail-interp">${escHtml(r.Interp_Text)}</div>` : '')}
-        </div>
+                oninput="onDetailFieldChange('Interp_Text',this.value)">${escHtml(r.Interp_Text||'')}</textarea>
+             </div>`
+          : (r.Interp_Text ? `<div class="detail-interp">${escHtml(r.Interp_Text)}</div>` : '')}
+      </div>
+
+      <div class="detail-kv-col">
+        ${[
+          {label:'Lab No',    key:'ID_Vendor',      cls:''},
+          {label:'Sampled',   key:'Sampled_Date',   cls:'', fmt: v => fmtDateDisplay(v)},
+          {label:'SMU',       key:'Meter_On_Asset', cls:'warn'},
+          {label:'Oil Hours', key:'Meter_on_Fluid', cls:''},
+          {label:'Oil Change',key:'Fluid_Changed',  cls: v => v==='Yes'?'ok': v==='No'?'bad':''},
+        ].map(f => {
+          const val = r[f.key]||'';
+          const disp = f.fmt ? f.fmt(val) : val;
+          const cls = typeof f.cls === 'function' ? f.cls(val) : f.cls;
+          return `<div class="detail-kv">
+            <span class="detail-kv-label">${f.label}</span>
+            ${em
+              ? `<input class="editable-val" style="max-width:130px;" value="${escAttr(val)}" onchange="onDetailFieldChange('${f.key}',this.value)">`
+              : `<span class="detail-kv-val ${cls}">${escHtml(disp)||'—'}</span>`}
+          </div>`;
+        }).join('')}
       </div>
     </div>
 
-    <div class="detail-grid">
-      ${elems.map(g => `
-        <div class="detail-section">
-          <div class="detail-section-title">${g.group}</div>
-          ${g.items.map(it => `
-            <div class="elem-row">
-              <span class="elem-name">${it.n}</span>
-              ${editableText(it.k, r[it.k]||'')}
-            </div>`).join('')}
+    <!-- ── META CARDS — same fields, split into 4 compact cards ── -->
+    <div class="detail-meta-row">
+      ${metaGroups.map(g => `
+        <div class="detail-meta-card">
+          <div class="detail-meta-card-title">${g.title}</div>
+          ${g.fields.map(f => {
+            const val = r[f.key]||'';
+            const disp = (f.key==='Sampled_Date'||f.key==='Report_Date') ? fmtDateDisplay(val) : val;
+            let inp;
+            if (!em) {
+              inp = `<span class="dmf-val">${escHtml(disp)||'—'}</span>`;
+            } else if (f.type === 'select') {
+              const opts2 = f.opts.map(o=>`<option value="${escAttr(o)}" ${val===o?'selected':''}>${o||'—'}</option>`).join('');
+              inp = `<select class="editable-val" style="max-width:130px;" onchange="onDetailFieldChange('${f.key}',this.value)">${opts2}</select>`;
+            } else {
+              inp = `<input class="editable-val" type="${f.type}" style="max-width:130px;" value="${escAttr(val)}" onchange="onDetailFieldChange('${f.key}',this.value)">`;
+            }
+            return `<div class="detail-meta-field">
+              <span class="dmf-name">${f.label}</span>${inp}
+            </div>`;
+          }).join('')}
         </div>`).join('')}
+    </div>
 
-      <div class="detail-section full">
-        <div class="detail-section-title">ELEMENT TREND — ${r.Asset_ID} / ${r.Component||'all components'}</div>
+    <!-- ── ELEMENT ANALYSIS — same 4 groups, now in one unified card ── -->
+    <div class="detail-elements-card">
+      <div class="detail-elements-header">
+        <span class="detail-elements-title">Element Analysis</span>
+        <span style="font-size:10px;color:var(--muted);font-family:var(--mono);">ppm · all values</span>
+      </div>
+      <div class="detail-elements-grid">
+        ${elems.map(g => `
+          <div class="detail-elem-group">
+            <div class="detail-section-title">
+              <span class="dstt-dot ${g.dot}"></span>${g.group}
+            </div>
+            ${g.items.map(it => `
+              <div class="elem-row">
+                <span class="elem-name">${it.n}</span>
+                ${elemVal(it.k, r[it.k]||'')}
+              </div>`).join('')}
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- ── TREND — same elements, same logic ── -->
+    <div class="detail-trend-card">
+      <div class="detail-trend-header">
+        <span class="detail-trend-title">Element Trend — ${escHtml(r.Asset_ID||'—')} / ${escHtml(r.Component||'all')}</span>
         <div class="trend-controls" id="detailTrendBtns">
           ${['Iron','Chromium','Silicon','TBN','Visc_100C','Oxidation','Soot','Copper'].map((el,i) =>
             `<button class="trend-btn ${i===0?'active':''}" onclick="switchDetailTrend('${el}',this)">${el.replace('_',' ')}</button>`
           ).join('')}
         </div>
-        <div class="chart-wrap"><canvas id="detailTrendChart" height="140"></canvas></div>
+      </div>
+      <div class="detail-trend-body">
+        <div class="chart-wrap"><canvas id="detailTrendChart" height="130"></canvas></div>
       </div>
     </div>`;
 
