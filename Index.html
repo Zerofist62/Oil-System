@@ -78,6 +78,7 @@ body.light-mode .log { background: #f0f5ff; }
   transition: all 0.2s;
   display: flex; align-items: center; gap: 6px;
   letter-spacing: 0.3px;
+  margin-left: auto;
 }
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--accentGlow); }
 
@@ -710,7 +711,7 @@ body::after {
       <div class="topbar-title">Dashboard</div>
       <div class="topbar-sub" id="dashLastUpdate">Oil Analysis Overview</div>
     </div>
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleBtn" title="Switch theme">🌙 Dark</button>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Switch theme">☀️ Light</button>
     <button class="btn btn-ghost" onclick="loadDashboard()">↺ Refresh</button>
   </div>
   <div class="page-body">
@@ -906,6 +907,7 @@ body::after {
       <div class="topbar-sub" id="listInfo">All data</div>
     </div>
     <button class="btn btn-primary" onclick="openModal(null)">＋ Add Record</button>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Switch theme">☀️ Light</button>
   </div>
   <div class="page-body">
     <div class="filter-bar">
@@ -1006,6 +1008,7 @@ body::after {
     <button class="btn btn-ghost" onclick="showPage('list')">← Back to List</button>
     <div style="flex:1"></div>
     <button class="btn btn-ghost" id="detailEditToggle" onclick="toggleDetailEdit()" style="display:none;">✏️ Edit Mode</button>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Switch theme">☀️ Light</button>
   </div>
   <div class="detail-nav-bar" id="detailNavBar" style="display:none;">
     <button class="btn btn-ghost" id="btnDetailPrev" onclick="navigateDetail(-1)">← Prev</button>
@@ -1030,6 +1033,7 @@ body::after {
       <div class="topbar-sub">Upload data from lab vendor</div>
     </div>
     <button class="btn btn-danger" onclick="confirmClear()">🗑️ Delete All Data</button>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Switch theme">☀️ Light</button>
   </div>
   <div class="page-body">
     <div class="import-layout">
@@ -1467,6 +1471,10 @@ function init() {
     })
     .withFailureHandler(e => { dashDone = true; checkDone(); toast('Dashboard gagal dimuat: ' + e.message, 'err'); })
     .getDashboardData();
+
+  // Default filter: Last 3 Months
+  const sel = document.getElementById('gQuickRange');
+  if (sel) { sel.value = 'last_3m'; setQuickDateFromSelect(sel); }
 }
 
 // Lazy-load full data only when List tab is first opened
@@ -1685,8 +1693,8 @@ function buildChart(id, type, labels, datasets, opts={}) {
       responsive: true, maintainAspectRatio: true,
       plugins: { legend: { labels: { color: '#6a82a8', font: { size: 11, family: 'Geist, sans-serif' } }, position: type==='doughnut'?'right':'top' } },
       scales: type==='doughnut' ? {} : {
-        x: { stacked: !!opts.stacked, ticks: { color: '#6a82a8', font: { size: 10, family: 'Geist Mono, monospace' } }, grid: { color: '#1e2f4d' } },
-        y: { stacked: !!opts.stacked, ticks: { color: '#6a82a8', font: { size: 10, family: 'Geist Mono, monospace' } }, grid: { color: '#1e2f4d' } }
+        x: { stacked: !!opts.stacked, ticks: { color: '#6a82a8', font: { size: 10, family: 'Geist Mono, monospace' } }, grid: { display: false } },
+        y: { stacked: !!opts.stacked, ticks: { color: '#6a82a8', font: { size: 10, family: 'Geist Mono, monospace' } }, grid: { display: false } }
       }
     }
   });
@@ -1724,8 +1732,8 @@ function renderTrendChart(d, elem) {
       responsive: true, maintainAspectRatio: true,
       plugins: { legend: { labels: { color: '#6a82a8', font: { size: 11 } } } },
       scales: {
-        x: { ticks: { color: '#6a82a8', font: { size: 10 } }, grid: { color: '#1e2f4d' } },
-        y: { ticks: { color: '#6a82a8', font: { size: 10 } }, grid: { color: '#1e2f4d' } }
+        x: { ticks: { color: '#6a82a8', font: { size: 10 } }, grid: { display: false } },
+        y: { ticks: { color: '#6a82a8', font: { size: 10 } }, grid: { display: false } }
       }
     }
   });
@@ -2148,8 +2156,8 @@ function renderDetailTrend(elem) {
       responsive: true, maintainAspectRatio: true,
       plugins: { legend: { labels: { color: '#6a82a8', font: { size: 11 } } } },
       scales: {
-        x: { ticks: { color: '#6a82a8', font: { size: 10 }, maxRotation: 30 }, grid: { color: '#1e2f4d' } },
-        y: { ticks: { color: '#6a82a8', font: { size: 10 } }, grid: { color: '#1e2f4d' } }
+        x: { ticks: { color: '#6a82a8', font: { size: 10 }, maxRotation: 30 }, grid: { display: false } },
+        y: { ticks: { color: '#6a82a8', font: { size: 10 } }, grid: { display: false } }
       }
     }
   });
@@ -2660,8 +2668,9 @@ let isLightMode = false;
 function toggleTheme() {
   isLightMode = !isLightMode;
   document.body.classList.toggle('light-mode', isLightMode);
-  const btn = document.getElementById('themeToggleBtn');
-  if (btn) btn.innerHTML = isLightMode ? '🌙 Dark' : '☀️ Light';
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.innerHTML = isLightMode ? '🌙 Dark' : '☀️ Light';
+  });
   // Rebuild charts so grid colors match new theme
   if (typeof loadDashboard === 'function' && !dashboardDirty) {
     // re-render charts in place using existing data
